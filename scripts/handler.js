@@ -1,18 +1,15 @@
 document.addEventListener("DOMContentLoaded", function(){
-    let Counter = function(elem){
-        this.count = 0;
-        this.elem = elem;
-        elem.addEventListener("click", () => {
-            this.count++;
-            this.show();
+    //タイマーを設置
+    let timer = window.setTimeout(
+        //現在の時刻を id=result要素に表示
+        function () {
+            let dat = new Date();
+            console.log(dat.toLocaleTimeString());
+            document.getElementById("result").textContent = dat.toLocaleTimeString();
+        },5000);
+
+        //ボタンクリック時にタイマー処理を終了
+        document.getElementById("btn").addEventListener("click", function(){
+            window.clearInterval(timer);
         },false);
-    };
-
-    //カウンター情報を表示するためのshowメソッド
-    Counter.prototype.show = function(){
-        console.log(this.elem.id, "は", this.count, "回クリックされました。");
-    }
-
-    //button要素btnにカウンターを紐付け
-    let n = new Counter(document.getElementById("btn"));
 },false);
